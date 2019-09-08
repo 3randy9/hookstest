@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface Props {
 	name: string;
@@ -11,10 +11,23 @@ const App = (props: Props) => {
 
 	const reset = () => setState(props);
 
+	useEffect(() => {
+		console.log('componentDidMount!!!!!!!');
+	}, []);
+
+	useEffect(() => {
+		console.log('this callback uis name only!!!!!!!');
+	}, [name]);
+
+	const renderPeriod = () => {
+		console.log('render');
+		return '。';
+	};
+
 	return (
 		<>
 			<p>
-				現在の{name}は、{price}です。
+				現在の{name}は、{price}です{renderPeriod()}
 			</p>
 			<button onClick={() => setState({ ...state, price: price + 1 })}>
 				+1
