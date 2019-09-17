@@ -21,10 +21,17 @@ const App = () => {
 
 	const deleteAllEvent = (e: React.BaseSyntheticEvent) => {
 		e.preventDefault();
-		dispatch({
-			type: 'DELETE_ALL_EVENT'
-		});
+		const result = window.confirm(
+			'すべてのイベントを本当に削除しても良いですか？'
+		);
+		if (result) {
+			dispatch({
+				type: 'DELETE_ALL_EVENT'
+			});
+		}
 	};
+
+	const unCreatable = title === '' || body === '';
 
 	return (
 		<div className="container">
@@ -50,10 +57,18 @@ const App = () => {
 					/>
 				</div>
 
-				<button className="btn btn-primary" onClick={addEvent}>
+				<button
+					className="btn btn-primary"
+					disabled={unCreatable}
+					onClick={addEvent}
+				>
 					イベントを作成する
 				</button>
-				<button className="btn btn-danger ml-3" onClick={deleteAllEvent}>
+				<button
+					className="btn btn-danger ml-3"
+					disabled={state.length === 0}
+					onClick={deleteAllEvent}
+				>
 					すべてのイベントを削除する
 				</button>
 			</form>

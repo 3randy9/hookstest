@@ -4,10 +4,15 @@ const Event = ({ event, dispatch }: any) => {
 	const id = event.id;
 	const handleClickDeleteBtn = (e: React.BaseSyntheticEvent) => {
 		e.preventDefault();
-		dispatch({
-			type: 'DELETE_EVENT',
-			id
-		});
+		const result = window.confirm(
+			`イベント(id=${id})を本当に削除しても良いですか？`
+		);
+		if (result) {
+			dispatch({
+				type: 'DELETE_EVENT',
+				id
+			});
+		}
 	};
 
 	return (
