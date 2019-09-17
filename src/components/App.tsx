@@ -1,6 +1,7 @@
 import React, { useState, useReducer } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import reducer from '../reducers';
+import Event from './Event';
 
 const App = () => {
 	const [state, dispatch] = useReducer(reducer, []);
@@ -18,7 +19,12 @@ const App = () => {
 		setBody('');
 	};
 
-	console.log({ state });
+	const deleteAllEvent = (e: React.BaseSyntheticEvent) => {
+		e.preventDefault();
+		dispatch({
+			type: 'DELETE_ALL_EVENT'
+		});
+	};
 
 	return (
 		<div className="container">
@@ -47,7 +53,9 @@ const App = () => {
 				<button className="btn btn-primary" onClick={addEvent}>
 					イベントを作成する
 				</button>
-				<button className="btn btn-danger">すべてのイベントを削除する</button>
+				<button className="btn btn-danger ml-3" onClick={deleteAllEvent}>
+					すべてのイベントを削除する
+				</button>
 			</form>
 
 			<h4 className="mt-5">イベント一覧</h4>
@@ -60,7 +68,11 @@ const App = () => {
 						<th></th>
 					</tr>
 				</thead>
-				<tbody></tbody>
+				<tbody>
+					{state.map((event, i) => (
+						<Event key={i} event={event} dispatch={dispatch} />
+					))}
+				</tbody>
 			</table>
 		</div>
 	);

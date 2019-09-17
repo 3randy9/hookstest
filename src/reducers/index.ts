@@ -6,8 +6,8 @@
 
 interface EventState {
 	id?: number;
-	title: string;
-	body: string;
+	title?: string;
+	body?: string;
 }
 
 interface Action extends EventState {
@@ -25,9 +25,10 @@ const events = (state: State = [], action: Action) => {
 			return [...state, { id, ...event }];
 
 		case 'DELETE_EVENT':
-			return state;
+			return state.filter(event => event.id !== action.id);
+
 		case 'DELETE_ALL_EVENT':
-			return state;
+			return [];
 		default:
 			return state;
 	}
