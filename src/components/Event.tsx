@@ -3,8 +3,9 @@ import { DELETE_EVENT } from '../actions';
 import AppContext from '../contexts/AppContext';
 
 const Event = ({ event }: any) => {
+	console.log(event);
 	const { dispatch } = useContext(AppContext);
-	const id = event.id;
+	const id: number = event.id;
 	const handleClickDeleteBtn = (e: React.BaseSyntheticEvent) => {
 		e.preventDefault();
 		const result = window.confirm(

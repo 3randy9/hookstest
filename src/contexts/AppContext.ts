@@ -1,6 +1,10 @@
 import { createContext } from 'react';
+import { State, Action } from '../reducers';
 
-const defaultValue: any = {};
-const AppContext = createContext(defaultValue);
+interface ContextProps {
+	state: State[];
+	dispatch: React.Dispatch<Action>;
+}
+const AppContext = createContext({} as ContextProps);
 
 export default AppContext;
