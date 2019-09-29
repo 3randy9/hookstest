@@ -1,15 +1,15 @@
 import { ADD_OPERATION_LOG, DELETE_ALL_OPERATION_LOG } from '../actions';
 
-export interface OperationLogs {
+export interface OperationLogState {
 	description: string;
 	operatedAt: string;
 }
 
-export interface OperationLogsAction extends OperationLogs {
+export interface OperationLogsAction extends OperationLogState {
 	type: string;
 }
 
-export type OperationLogsState = OperationLogs[];
+export type OperationLogsState = OperationLogState[];
 
 const operationLogs = (
 	state: OperationLogsState = [],

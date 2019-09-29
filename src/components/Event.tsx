@@ -1,11 +1,17 @@
 import React, { useContext } from 'react';
-import { DELETE_EVENT } from '../actions';
+import { DELETE_EVENT, ADD_OPERATION_LOG } from '../actions';
 import AppContext from '../contexts/AppContext';
+import { timeCurrentIso8601 } from '../utils';
+import { EventState } from '../reducers/events';
 
-const Event = ({ event }: any) => {
-	console.log(event);
+type EventProps = {
+	event: EventState;
+};
+
+const Event = ({ event }: EventProps) => {
 	const { dispatch } = useContext(AppContext);
-	const id: number = event.id;
+	const id = event.id;
+
 	const handleClickDeleteBtn = (e: React.BaseSyntheticEvent) => {
 		e.preventDefault();
 		const result = window.confirm(
@@ -15,6 +21,11 @@ const Event = ({ event }: any) => {
 			dispatch({
 				type: DELETE_EVENT,
 				id
+			});
+			dispatch({
+				type: ADD_OPERATION_LOG,
+				description: `イベント(id=${id})を削除しました。`,
+				operatedAt: timeCurrentIso8601
 			});
 		}
 	};

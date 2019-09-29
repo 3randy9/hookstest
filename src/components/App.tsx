@@ -4,6 +4,7 @@ import reducer from '../reducers';
 import AppContext from '../contexts/AppContext';
 import EventForm from './EventForm';
 import EventList from './EventList';
+import OperationList from './OperationList';
 
 const App = () => {
 	const initialState = {
@@ -17,6 +18,7 @@ const App = () => {
 			<div className="container">
 				<EventForm />
 				<EventList />
+				<OperationList />
 			</div>
 		</AppContext.Provider>
 	);

@@ -50,6 +50,18 @@ const EventForm = () => {
 
 	const unCreatable = title === '' || body === '';
 
+	const deleteAllOperationLog = (e: React.BaseSyntheticEvent) => {
+		e.preventDefault();
+		const result = window.confirm(
+			'すべての操作ログを本当に削除しても良いですか？'
+		);
+		if (result) {
+			dispatch({
+				type: DELETE_ALL_OPERATION_LOG
+			});
+		}
+	};
+
 	return (
 		<>
 			<h4 className="mt-5">イベント作成フォーム</h4>
@@ -87,6 +99,13 @@ const EventForm = () => {
 					onClick={deleteAllEvent}
 				>
 					すべてのイベントを削除する
+				</button>
+				<button
+					className="btn btn-danger ml-3"
+					disabled={state.operationLogs.length === 0}
+					onClick={deleteAllOperationLog}
+				>
+					すべての操作ログを削除する
 				</button>
 			</form>
 		</>

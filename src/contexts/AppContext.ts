@@ -1,12 +1,12 @@
 import { createContext } from 'react';
-import { EventState, EventAction } from '../reducers/events';
+import { EventsState, EventAction } from '../reducers/events';
 import {
 	OperationLogsState,
 	OperationLogsAction
 } from '../reducers/operationLogs';
 
 interface State {
-	events: EventState;
+	events: EventsState;
 	operationLogs: OperationLogsState;
 }
 

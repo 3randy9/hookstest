@@ -5,19 +5,19 @@ import { CREATE_EVENT, DELETE_EVENT, DELETE_ALL_EVENT } from '../actions';
 // 		body: '2020年に東京オリンピックを開催します。'
 // }
 
-export interface Event {
+export interface EventState {
 	id?: number;
 	title?: string;
 	body?: string;
 }
 
-export interface EventAction extends Event {
+export interface EventAction extends EventState {
 	type: string;
 }
 
-export type EventState = Event[];
+export type EventsState = EventState[];
 
-const events = (state: EventState = [], action: EventAction) => {
+const events = (state: EventsState = [], action: EventAction) => {
 	switch (action.type) {
 		case CREATE_EVENT:
 			const event = { title: action.title, body: action.body };
