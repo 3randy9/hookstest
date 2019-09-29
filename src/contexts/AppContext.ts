@@ -1,8 +1,11 @@
 import { createContext } from 'react';
-import { State, Action } from '../reducers';
+import { EventState, Action } from '../reducers/events';
 
-interface ContextProps {
-	state: State[];
+interface State {
+	events: EventState;
+}
+export interface ContextProps {
+	state: State;
 	dispatch: React.Dispatch<Action>;
 }
 const AppContext = createContext({} as ContextProps);
