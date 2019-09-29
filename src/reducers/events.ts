@@ -11,13 +11,13 @@ export interface Event {
 	body?: string;
 }
 
-export interface Action extends Event {
+export interface EventAction extends Event {
 	type: string;
 }
 
 export type EventState = Event[];
 
-const events = (state: EventState = [], action: Action) => {
+const events = (state: EventState = [], action: EventAction) => {
 	switch (action.type) {
 		case CREATE_EVENT:
 			const event = { title: action.title, body: action.body };
