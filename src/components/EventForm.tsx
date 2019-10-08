@@ -13,13 +13,9 @@ const EventForm = () => {
 	const [title, setTitle] = useState('');
 	const [body, setBody] = useState('');
 
-	const addEvent = (e: React.BaseSyntheticEvent) => {
+	const addEvent = (e: React.MouseEvent) => {
 		e.preventDefault();
-		dispatch({
-			type: CREATE_EVENT,
-			title,
-			body
-		});
+		dispatch({ type: CREATE_EVENT, title, body });
 
 		dispatch({
 			type: ADD_OPERATION_LOG,
@@ -31,7 +27,7 @@ const EventForm = () => {
 		setBody('');
 	};
 
-	const deleteAllEvent = (e: React.BaseSyntheticEvent) => {
+	const deleteAllEvent = (e: React.MouseEvent) => {
 		e.preventDefault();
 		const result = window.confirm(
 			'すべてのイベントを本当に削除しても良いですか？'
@@ -50,7 +46,7 @@ const EventForm = () => {
 
 	const unCreatable = title === '' || body === '';
 
-	const deleteAllOperationLog = (e: React.BaseSyntheticEvent) => {
+	const deleteAllOperationLog = (e: React.MouseEvent) => {
 		e.preventDefault();
 		const result = window.confirm(
 			'すべての操作ログを本当に削除しても良いですか？'
